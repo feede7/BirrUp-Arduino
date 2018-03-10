@@ -8,7 +8,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN); //Creamos el objeto para el RC522
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600); // Iniciamos la comunicación  serial
+  Serial.begin(115200); // Iniciamos la comunicación  serial
   SPI.begin();          // Iniciamos el Bus SPI
   mfrc522.PCD_Init();   // Iniciamos  el MFRC522
   pinMode(LED_PIN, OUTPUT);
@@ -24,7 +24,7 @@ void loop() {
     digitalWrite(LED_PIN,LOW);
     if (mfrc522.PICC_ReadCardSerial()) {
       // Enviamos serialemente su UID
-      Serial.print("Card UID:");
+      //Serial.print("Card UID:");
       for (byte i = 0; i < mfrc522.uid.size; i++) {
         Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
         Serial.print(mfrc522.uid.uidByte[i], HEX);   
